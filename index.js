@@ -10,10 +10,9 @@ app.use(express.static('public'));
 app.use(bodyParser.text());
 
 app.post('/scripts', (req, res) => {
-    const codeContent = req.body;
+    const { fileName, codeContent } = JSON.parse(req.body);
 
     if (codeContent.trim() !== "") {
-        const fileName = generateRandomFileName();
         const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
 
         fs.writeFile(filePath, codeContent, (err) => {
@@ -29,6 +28,7 @@ app.post('/scripts', (req, res) => {
         res.status(400).send('Bad Request: Please provide code content.');
     }
 });
+
 
 function generateRandomFileName() {
 	const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
