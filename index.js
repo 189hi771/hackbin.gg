@@ -4,13 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
-app.use(bodyParser.text());
+app.use(bodyParser.json()); // Use JSON parser for request body
 
-app.post('/scripts', (req, res) => {
-    const { fileName, codeContent } = JSON.parse(req.body);
+app.post('/api/scripts', (req, res) => {
+    const { fileName, codeContent } = req.body;
 
     if (codeContent.trim() !== "") {
         const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
@@ -29,16 +29,15 @@ app.post('/scripts', (req, res) => {
     }
 });
 
-
 function generateRandomFileName() {
-	const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	let result = "";
-	for (let i = 0; i < 8; i++) {
-		result += characters.charAt(Math.floor(Math.random() * characters.length));
-	}
-	return result;
+    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let result = "";
+    for (let i = 0; i < 8; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
 }
 
 app.listen(PORT, () => {
-	console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server is running at http://localhost:${PORT}`);
 });
