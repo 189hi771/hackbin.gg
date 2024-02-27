@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (codeContent.trim() !== "") {
             const fileName = generateRandomFileName();
+fetch('/scripts', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ fileName, codeContent }),
+})
 
-            fetch('/api/scripts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ fileName, codeContent }),
-            })
             .then(response => response.text())
             .then(extractedFileName => {
                 alert(`File created successfully. Filename: ${extractedFileName}`);
