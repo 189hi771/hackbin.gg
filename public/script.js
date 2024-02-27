@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (codeContent.trim() !== "") {
             const fileName = generateRandomFileName();
-fetch('/api/scripts', {
+fetch('/public/scripts', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
