@@ -7,13 +7,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
-app.use(bodyParser.json()); // Use JSON parser for request body
+app.use(bodyParser.json());
 
-app.post('/public/scripts', (req, res) => {
+app.post('/scripts', (req, res) => {
     const { fileName, codeContent } = req.body;
 
     if (codeContent.trim() !== "") {
-const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
+        const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
 
         fs.writeFile(filePath, codeContent, (err) => {
             if (err) {
@@ -28,15 +28,6 @@ const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
         res.status(400).send('Bad Request: Please provide code content.');
     }
 });
-
-function generateRandomFileName() {
-    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let result = "";
-    for (let i = 0; i < 8; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-}
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
