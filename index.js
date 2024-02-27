@@ -13,7 +13,7 @@ app.post('/public/scripts', (req, res) => {
     const { fileName, codeContent } = req.body;
 
     if (codeContent.trim() !== "") {
-        const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
+const filePath = path.join(__dirname, 'public', 'scripts', `${fileName}.html`);
 
         fs.writeFile(filePath, codeContent, (err) => {
             if (err) {
