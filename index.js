@@ -22,7 +22,7 @@ app.post('/scripts', (req, res) => {
 				res.status(500).send('Internal Server Error');
 			} else {
 				console.log(`File ${fileName}.html created successfully.`);
-			return res.send(`File created successfully. Filename: ${fileName}.html`);
+			return res.send(`${fileName}.html`);
 			}
 		});
 	} else {
