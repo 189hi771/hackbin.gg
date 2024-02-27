@@ -24,10 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			})
 			.then(response => response.text())
 			.then(message => {
-				// Extract the filename from the message
 				const extractedFileName = message.match(/Filename: (.+)/)[1];
-				alert(`File created successfully. Filename: ${extractedFileName}`);
-				// Redirect to the newly created page without the ".html" extension
 				window.location.href = `/scripts/${extractedFileName}`;
 			})
 			.catch(error => {
