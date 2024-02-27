@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (codeContent.trim() !== "") {
             const fileName = generateRandomFileName();
 
-            fetch('/api/scripts', {  // assuming your serverless function is in the 'api' directory
+            fetch('/api/scripts', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // update content type
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ fileName, codeContent }),
             })
