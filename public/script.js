@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: {
                     'Content-Type': 'text/plain',
                 },
-                body: codeContent,
+                body: JSON.stringify({ fileName, codeContent }), // Send both filename and code content
             })
             .then(response => response.text())
             .then(extractedFileName => {
