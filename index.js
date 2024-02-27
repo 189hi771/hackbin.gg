@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use(bodyParser.json()); // Use JSON parser for request body
 
-app.post('/api/scripts', (req, res) => {
+app.post('/public/scripts', (req, res) => {
     const { fileName, codeContent } = req.body;
 
     if (codeContent.trim() !== "") {
