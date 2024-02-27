@@ -24,8 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			})
 			.then(response => response.text())
 			.then(message => {
-				const extractedFileName = message.match(/Filename: (.+)/)[1];
-				window.location.href = `/scripts/${extractedFileName}`;
+				window.location.href = `/scripts/${message}`;
 			})
 			.catch(error => {
 				console.error('Error:', error);
